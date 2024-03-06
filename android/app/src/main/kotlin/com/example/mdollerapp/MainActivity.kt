@@ -1,4 +1,4 @@
-package com.example.mdollerapp
+package com.openuniverse.mdollar
 
 import io.flutter.embedding.android.FlutterActivity
 
