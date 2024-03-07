@@ -93,36 +93,42 @@ class _HomePageState extends State<HomePage> {
       name: "Electricity Bill",
       dateTime: "11 Oct 2024",
       money: "-\$60",
+      number: "175857494747",
     ),
     Transaction(
       image: "assets/icons/t15.png",
       name: "Amelia",
       dateTime: "11 Oct 2024",
       money: "+\$409",
+      number: "175857494747",
     ),
     Transaction(
       image: "assets/icons/t3.png",
       name: "Aryaa patel",
       dateTime: "11 Oct 2024",
       money: "-\$409",
+      number: "175857494747",
     ),
     Transaction(
       image: "assets/icons/t4.png",
       name: "Ch Vincent",
       dateTime: "11 Oct 2024",
       money: "-\$60",
+      number: "175857494747",
     ),
     Transaction(
       image: "assets/icons/t7.png",
       name: "Shivani",
       dateTime: "11 Oct 2024",
       money: "+\$202",
+      number: "175857494747",
     ),
     Transaction(
       image: "assets/icons/t5.png",
       name: "Shophia",
       dateTime: "11 Oct 2024",
       money: "-\$409",
+      number: "175857494747",
     ),
   ];
   @override
