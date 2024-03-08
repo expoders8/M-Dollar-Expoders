@@ -37,5 +37,5 @@ const kBlueGreyColor = Color(0xFF607D8B);
 const kPurpleColor = Color(0xFF9C27B0);
 const kBrownColor = Color(0xFF795548);
 const kCyanColor = Color(0xFF00BCD4);
-const kGreenColor = Color(0xFF4CAF50);
+const kGreenColor = Color(0xFF02BB8F);
 const kRedAccentColor = Color(0xFFFF5252);

@@ -559,6 +559,115 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  bottomSheetforBankPay() {
+    return showModalBottomSheet(
+      context: context,
+      backgroundColor: kWhiteColor,
+      builder: (context) {
+        return Wrap(
+          children: [
+            const Center(
+              child: ImageIcon(
+                AssetImage("assets/icons/bottomsheetLine.png"),
+                size: 30,
+                color: Color(0XffBFC5CC),
+              ),
+            ),
+            Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+              ),
+              child: SizedBox(
+                height: 180,
+                width: Get.width,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Tranfer to",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 22,
+                            fontFamily: kCircularStdMedium),
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              Get.toNamed(Routes.mPesaAccountPage);
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFE5E6E0),
+                                  ),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    "assets/icons/homeicon.png",
+                                    scale: 1.5,
+                                    color: const Color(0xFF050505),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Domestic Bank\nAccount",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 14,
+                                      fontFamily: kCircularStdNormal),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 34),
+                          Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: const Color(0xFFE5E6E0),
+                                ),
+                                height: 50,
+                                width: 50,
+                                child: Image.asset(
+                                  "assets/icons/internetIcon.png",
+                                  scale: 1.5,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "International\nBank Account",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 14,
+                                    fontFamily: kCircularStdNormal),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   buildTitleWidget(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 6.0, top: 5),
@@ -601,6 +710,9 @@ class _HomePageState extends State<HomePage> {
         });
         if (selectedTitle == "Transfer") {
           bottomSheetforTranferTo();
+        }
+        if (selectedTitle == "Bank Pay") {
+          bottomSheetforBankPay();
         }
       },
       child: Column(

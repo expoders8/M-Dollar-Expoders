@@ -148,7 +148,7 @@ class _MPesaAccountPageState extends State<MPesaAccountPage> {
               height: 20,
               width: 20,
               child: Image.asset(
-                'assets/icons/arrow-right.png',
+                'assets/icons/arrow-left-outline.png',
                 scale: 1.2,
               ),
             ),

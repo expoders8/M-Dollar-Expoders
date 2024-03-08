@@ -106,7 +106,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: Get.height - 140,
                 width: Get.width,
                 child: Center(

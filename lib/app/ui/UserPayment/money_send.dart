@@ -22,6 +22,7 @@ class MoneySendPage extends StatefulWidget {
 
 class _MoneySendPageState extends State<MoneySendPage> {
   final TextEditingController msgController = TextEditingController();
+  SampleItem? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +30,57 @@ class _MoneySendPageState extends State<MoneySendPage> {
         backgroundColor: kAppBackGround1Color,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 18.0),
-            child: GestureDetector(
-              child: Image.asset(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: PopupMenuButton<SampleItem>(
+              position: PopupMenuPosition.under,
+              color: kWhiteColor,
+              icon: Image.asset(
                 "assets/icons/vartical-dots.png",
                 scale: 1.6,
               ),
+              initialValue: selectedItem,
+              onSelected: (SampleItem item) {
+                setState(() {
+                  selectedItem = item;
+                });
+              },
+              itemBuilder: (BuildContext context) =>
+                  <PopupMenuEntry<SampleItem>>[
+                PopupMenuItem<SampleItem>(
+                  height: 35,
+                  value: SampleItem.getHelp,
+                  child: SizedBox(
+                    width: 122,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/help.png",
+                          scale: 1.2,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text('Get Help'),
+                      ],
+                    ),
+                  ),
+                ),
+                PopupMenuItem<SampleItem>(
+                  height: 35,
+                  value: SampleItem.sendFeedback,
+                  child: SizedBox(
+                    width: 122,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/feedback.png",
+                          scale: 1.2,
+                        ),
+                        const SizedBox(width: 10),
+                        const Text('Send feedback'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -106,6 +152,10 @@ class _MoneySendPageState extends State<MoneySendPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 width: Get.width - 100,
                 child: TextFormField(
+                  style: const TextStyle(
+                    fontSize: 35,
+                    fontFamily: kCircularStdBold,
+                  ),
                   controller: msgController,
                   textAlignVertical: TextAlignVertical.center,
                   keyboardType: TextInputType.number,
@@ -117,7 +167,7 @@ class _MoneySendPageState extends State<MoneySendPage> {
                     fillColor: const Color(0xFFFDF8F6),
                     hintText: "",
                     hintStyle: const TextStyle(color: kPrimaryColor),
-                    contentPadding: const EdgeInsets.fromLTRB(60, 60, 60, 0),
+                    // contentPadding: const EdgeInsets.fromLTRB(60, 50, 60, 0),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(9.0),
                       borderSide: BorderSide.none,
@@ -163,7 +213,7 @@ class _MoneySendPageState extends State<MoneySendPage> {
               const SizedBox(height: 90),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => UserChatPage());
+                  Get.to(() => const UserChatPage());
                 },
                 child: Container(
                   width: Get.width - 190,
