@@ -1,14 +1,12 @@
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:get/get.dart';
 
-import '../../../config/constant/color_constant.dart';
-import '../../../config/constant/font_constant.dart';
-import '../../models/transection_list_model.dart';
 import '../UserPayment/user_payment.dart';
-// import '../widgets/custom_textfield.dart';
+import '../../models/transection_list_model.dart';
+import '../../../config/constant/font_constant.dart';
+import '../../../config/constant/color_constant.dart';
 
 class MPesaAccountPage extends StatefulWidget {
   const MPesaAccountPage({super.key});
@@ -194,15 +192,6 @@ class _MPesaAccountPageState extends State<MPesaAccountPage> {
                       fontFamily: kCircularStdMedium),
                 ),
                 const SizedBox(height: 10),
-                // CustomTextFormField(
-                //   hintText: '  +1 546-645-4657-53',
-                //   maxLines: 1,
-                //   ctrl: accountNumberController,
-                //   name: "phoneNo",
-                //   prefixIcon: 'assets/icons/transferMoney.png',
-                //   formSubmitted: isFormSubmitted,
-                //   validationMsg: 'M-pesa pin should be 10 digits',
-                // ),
                 TypeAheadField<Transaction>(
                   debounceDuration: const Duration(microseconds: 10),
                   hideSuggestionsOnKeyboardHide: true,

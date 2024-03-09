@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
+import '../PaymentSuccess/success_payment.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
-import '../PaymentSuccess/success_payment.dart';
 
 class UserChatPage extends StatefulWidget {
   const UserChatPage({

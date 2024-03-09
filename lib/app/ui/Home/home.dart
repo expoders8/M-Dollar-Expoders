@@ -600,7 +600,7 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               Get.back();
-                              Get.toNamed(Routes.mPesaAccountPage);
+                              // Get.toNamed(Routes.internationalTransferPage);
                             },
                             child: Column(
                               children: [
@@ -630,30 +630,36 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(width: 34),
-                          Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: const Color(0xFFE5E6E0),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              Get.toNamed(Routes.internationalTransferPage);
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFE5E6E0),
+                                  ),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    "assets/icons/internetIcon.png",
+                                    scale: 1.5,
+                                  ),
                                 ),
-                                height: 50,
-                                width: 50,
-                                child: Image.asset(
-                                  "assets/icons/internetIcon.png",
-                                  scale: 1.5,
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "International\nBank Account",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 14,
+                                      fontFamily: kCircularStdNormal),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                "International\nBank Account",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: 14,
-                                    fontFamily: kCircularStdNormal),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       )
