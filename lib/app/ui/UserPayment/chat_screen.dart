@@ -465,7 +465,7 @@ class _UserChatPageState extends State<UserChatPage> {
                         fit: BoxFit.cover,
                       ),
                       onPressed: () async {
-                        Get.to(const SuccessPaymentPage());
+                        Get.to(() => const SuccessPaymentPage());
                       },
                     ),
                     border: OutlineInputBorder(

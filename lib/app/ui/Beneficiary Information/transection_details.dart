@@ -272,7 +272,7 @@ class _TransectionDetailsPageState extends State<TransectionDetailsPage> {
                         ],
                       ),
                       onPressed: () {
-                        // Get.toNamed(Routes.accountAddedCompletPage);
+                        Get.toNamed(Routes.additionalTransectionDetailsPage);
                       },
                     ),
                   )

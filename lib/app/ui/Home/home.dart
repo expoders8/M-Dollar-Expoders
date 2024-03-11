@@ -9,6 +9,7 @@ import '../../models/business_list_model.dart';
 import '../../models/transection_list_model.dart';
 import '../../models/user_list_model.dart';
 import '../../routes/app_pages.dart';
+import '../MoneySend & Transfer/money_send_transfer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -466,7 +467,8 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               Get.back();
-                              Get.toNamed(Routes.mPesaAccountPage);
+                              Get.to(() => const MoneySendAndTransferPage(
+                                  tag: "M-Pesa Account"));
                             },
                             child: Column(
                               children: [
@@ -495,56 +497,70 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(width: 34),
-                          Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: const Color(0xFFE5E6E0),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              Get.to(() => const MoneySendAndTransferPage(
+                                  tag: "mobile Number"));
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFE5E6E0),
+                                  ),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    "assets/icons/paymentPhone.png",
+                                    scale: 1.5,
+                                  ),
                                 ),
-                                height: 50,
-                                width: 50,
-                                child: Image.asset(
-                                  "assets/icons/paymentPhone.png",
-                                  scale: 1.5,
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Mobile\nNumber",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 14,
+                                      fontFamily: kCircularStdNormal),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                "Mobile\nNumber",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: 14,
-                                    fontFamily: kCircularStdNormal),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           const SizedBox(width: 34),
-                          Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: const Color(0xFFE5E6E0),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              Get.to(() => const MoneySendAndTransferPage(
+                                  tag: "M-Dollar ID"));
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFE5E6E0),
+                                  ),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    "assets/icons/paymentId.png",
+                                    scale: 1.5,
+                                  ),
                                 ),
-                                height: 50,
-                                width: 50,
-                                child: Image.asset(
-                                  "assets/icons/paymentId.png",
-                                  scale: 1.5,
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "M-Dollar\nID",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 14,
+                                      fontFamily: kCircularStdNormal),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                "M-Dollar\nID",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: 14,
-                                    fontFamily: kCircularStdNormal),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       )
@@ -719,6 +735,9 @@ class _HomePageState extends State<HomePage> {
         }
         if (selectedTitle == "Bank Pay") {
           bottomSheetforBankPay();
+        }
+        if (selectedTitle == "Pay by Scan") {
+          Get.toNamed(Routes.qRCodeScannerPage);
         }
       },
       child: Column(

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../config/constant/color_constant.dart';
 import '../../../config/constant/font_constant.dart';
-import '../../routes/app_pages.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? ctrl;
@@ -107,7 +106,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             EdgeInsets.fromLTRB(widget.prefixIcon == null ? 16 : 38, 0, 10, 0),
         hintStyle: const TextStyle(color: kGreyColor),
         labelStyle: const TextStyle(color: kBlackColor),
-        prefixIcon: widget.prefixIcon,
+        prefixIcon: widget.name == "pin"
+            ? const Padding(
+                padding: EdgeInsets.only(top: 14.0, left: 10),
+                child: Text("Pin -"),
+              )
+            : widget.prefixIcon,
+        prefixStyle: const TextStyle(),
         suffixIcon: widget.name == "password"
             ? IconButton(
                 splashColor: kTransparentColor,
@@ -162,7 +167,24 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                       ),
                     ),
                   )
-                : null,
+                : widget.name == "pin"
+                    ? GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          width: 50,
+                          decoration: const BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10),
+                                  topRight: Radius.circular(10))),
+                          child: Image.asset(
+                            "assets/icons/sendIcon.png",
+                            scale: 1.5,
+                            color: kWhiteColor,
+                          ),
+                        ),
+                      )
+                    : null,
         border: OutlineInputBorder(
           borderSide: const BorderSide(
             color: kWhiteColor,
