@@ -6,14 +6,11 @@ import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
 
 class UserPaymentPage extends StatefulWidget {
-  final String userName;
-  final String userImage;
-  final String userNumber;
+  final String? userName;
+  final String? userImage;
+  final String? userNumber;
   const UserPaymentPage(
-      {super.key,
-      required this.userName,
-      required this.userImage,
-      required this.userNumber});
+      {super.key, this.userName, this.userImage, this.userNumber});
 
   @override
   State<UserPaymentPage> createState() => _UserPaymentPageState();
@@ -59,7 +56,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(25)),
               child: Image.asset(
-                widget.userImage,
+                widget.userImage!,
               ),
             ),
             const SizedBox(width: 15),
@@ -67,7 +64,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.userName,
+                  widget.userName!,
                   style: const TextStyle(
                       color: kPrimaryColor,
                       fontSize: 16,
@@ -125,7 +122,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(25)),
                               child: Image.asset(
-                                widget.userImage,
+                                widget.userImage!,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -138,7 +135,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                                   fontFamily: kCircularStdNormal),
                             ),
                             Text(
-                              widget.userName,
+                              widget.userName!,
                               style: const TextStyle(
                                   color: kPrimaryColor,
                                   fontSize: 24,
@@ -153,7 +150,7 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                                   fontFamily: kCircularStdNormal),
                             ),
                             Text(
-                              widget.userNumber,
+                              widget.userNumber!,
                               style: const TextStyle(
                                   color: kPrimaryColor,
                                   fontSize: 15,
@@ -244,9 +241,9 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                       ),
                       onPressed: () async {
                         Get.to(() => MoneySendPage(
-                              userImage: widget.userImage,
-                              userName: widget.userName,
-                              userNumber: widget.userNumber,
+                              userImage: widget.userImage!,
+                              userName: widget.userName!,
+                              userNumber: widget.userNumber!,
                               money: msgController.text,
                             ));
                       },

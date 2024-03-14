@@ -8,16 +8,16 @@ import '../../../app/ui/UserPayment/chat_screen.dart';
 enum SampleItem { getHelp, sendFeedback }
 
 class MoneySendPage extends StatefulWidget {
-  final String userName;
-  final String userImage;
-  final String userNumber;
-  final String money;
+  final String? userName;
+  final String? userImage;
+  final String? userNumber;
+  final String? money;
   const MoneySendPage(
       {super.key,
-      required this.userName,
-      required this.userImage,
-      required this.userNumber,
-      required this.money});
+      this.userName = "Aimla",
+      this.userImage = "assets/icons/paymentStore.png",
+      this.userNumber = "546-645-4557-53",
+      this.money = ""});
   @override
   State<MoneySendPage> createState() => _MoneySendPageState();
 }
@@ -123,7 +123,7 @@ class _MoneySendPageState extends State<MoneySendPage> {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(25)),
                 child: Image.asset(
-                  widget.userImage,
+                  widget.userImage!,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -136,14 +136,14 @@ class _MoneySendPageState extends State<MoneySendPage> {
                     fontFamily: kCircularStdNormal),
               ),
               Text(
-                widget.userName,
+                widget.userName!,
                 style: const TextStyle(
                     color: kPrimaryColor,
                     fontSize: 22,
                     fontFamily: kCircularStdBold),
               ),
               Text(
-                widget.userNumber,
+                widget.userNumber!,
                 style: const TextStyle(
                     color: kPrimaryColor,
                     fontSize: 13,
