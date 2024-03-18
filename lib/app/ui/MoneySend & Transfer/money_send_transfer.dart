@@ -188,9 +188,9 @@ class _MoneySendAndTransferPageState extends State<MoneySendAndTransferPage> {
                       fontFamily: kCircularStdBold),
                 ),
                 const SizedBox(height: 15),
-                const Text(
-                  "Pay using M-pesa account",
-                  style: TextStyle(
+                Text(
+                  "Pay using ${widget.tag}",
+                  style: const TextStyle(
                       color: kPrimaryColor,
                       fontSize: 15,
                       fontFamily: kCircularStdMedium),

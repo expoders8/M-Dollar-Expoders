@@ -238,8 +238,8 @@ class _HomePageState extends State<HomePage> {
                             "Pay by Scan", "assets/icons/noun-scan.png"),
                         buildPaymentCardWidget(
                             "Bill Pay", "assets/icons/document.png"),
-                        buildPaymentCardWidget(
-                            "Bank Pay", "assets/icons/homeicon.png"),
+                        // buildPaymentCardWidget(
+                        //     "Bank Pay", "assets/icons/homeicon.png"),
                         const SizedBox(width: 10),
                       ],
                     ),
@@ -464,39 +464,39 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                              Get.to(() => const MoneySendAndTransferPage(
-                                  tag: "M-Pesa Account"));
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: const Color(0xFFE5E6E0),
-                                  ),
-                                  height: 50,
-                                  width: 50,
-                                  child: Image.asset(
-                                    "assets/icons/transferMoney.png",
-                                    scale: 1.5,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  "M-Pesa\nAccount",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: 14,
-                                      fontFamily: kCircularStdNormal),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 34),
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     Get.back();
+                          //     Get.to(() => const MoneySendAndTransferPage(
+                          //         tag: "M-Pesa Account"));
+                          //   },
+                          //   child: Column(
+                          //     children: [
+                          //       Container(
+                          //         decoration: BoxDecoration(
+                          //           borderRadius: BorderRadius.circular(12),
+                          //           color: const Color(0xFFE5E6E0),
+                          //         ),
+                          //         height: 50,
+                          //         width: 50,
+                          //         child: Image.asset(
+                          //           "assets/icons/transferMoney.png",
+                          //           scale: 1.5,
+                          //         ),
+                          //       ),
+                          //       const SizedBox(height: 10),
+                          //       const Text(
+                          //         "M-Pesa\nAccount",
+                          //         textAlign: TextAlign.center,
+                          //         style: TextStyle(
+                          //             color: kPrimaryColor,
+                          //             fontSize: 14,
+                          //             fontFamily: kCircularStdNormal),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          const SizedBox(width: 3),
                           GestureDetector(
                             onTap: () {
                               Get.back();
@@ -553,6 +553,39 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(height: 10),
                                 const Text(
                                   "M-Dollar\nID",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 14,
+                                      fontFamily: kCircularStdNormal),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 34),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                              bottomSheetforBankPay();
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: const Color(0xFFE5E6E0),
+                                  ),
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    "assets/icons/homeicon.png",
+                                    scale: 1.5,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Bank Pay \n",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: kPrimaryColor,
@@ -733,9 +766,7 @@ class _HomePageState extends State<HomePage> {
         if (selectedTitle == "Transfer") {
           bottomSheetforTranferTo();
         }
-        if (selectedTitle == "Bank Pay") {
-          bottomSheetforBankPay();
-        }
+
         if (selectedTitle == "Pay by Scan") {
           Get.toNamed(Routes.qRCodeScannerPage);
         }
