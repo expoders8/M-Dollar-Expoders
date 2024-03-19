@@ -111,7 +111,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 padding: EdgeInsets.only(top: 14.0, left: 10),
                 child: Text("Pin -"),
               )
-            : widget.prefixIcon,
+            : widget.name == "mobileno"
+                ? Image.asset(
+                    "assets/icons/phoneicon.png",
+                    height: 20,
+                    width: 20,
+                    color: kPrimaryColor,
+                  )
+                : widget.prefixIcon,
         prefixStyle: const TextStyle(),
         suffixIcon: widget.name == "password"
             ? IconButton(

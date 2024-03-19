@@ -1,17 +1,21 @@
 import 'package:get/get.dart';
-
-import '../ui/Beneficiary Information/account_added_complet.dart';
-import '../ui/Beneficiary Information/additional_transection_details.dart';
+import '../../config/provider/payment_succses.dart';
+import '../ui/Auth/sign_in.dart';
+import '../ui/Home/home.dart';
+import '../ui/Profile/profile.dart';
+import '../ui/AddPayment/add_payment.dart';
+import '../ui/SelectBank/select_back.dart';
+import '../ui/widgets/country_widget.dart';
+import '../ui/QRCodeScanner/qr_code_scanner.dart';
 import '../ui/Beneficiary Information/pay_charges.dart';
+import '../ui/Beneficiary Information/transfer_code.dart';
+import '../ui/MoneySend & Transfer/money_send_transfer.dart';
 import '../ui/Beneficiary Information/purpose_transection.dart';
 import '../ui/Beneficiary Information/transection_details.dart';
-import '../ui/Beneficiary Information/transfer_code.dart';
-import '../ui/Home/home.dart';
-import '../ui/QRCodeScanner/qr_code_scanner.dart';
-import '../ui/widgets/country_widget.dart';
-import '../ui/MoneySend & Transfer/money_send_transfer.dart';
 import '../ui/InternationalTransfer/international_transfer.dart';
+import '../ui/Beneficiary Information/account_added_complet.dart';
 import '../ui/Beneficiary Information/beneficiary_information.dart';
+import '../ui/Beneficiary Information/additional_transection_details.dart';
 
 part 'app_routes.dart';
 
@@ -68,6 +72,26 @@ class AppPages {
     GetPage(
       name: _Paths.qRCodeScannerPage,
       page: () => const QRCodeScannerPage(),
+    ),
+    GetPage(
+      name: _Paths.profilePage,
+      page: () => const ProfilePage(),
+    ),
+    GetPage(
+      name: _Paths.addPaymentPage,
+      page: () => const AddPaymentPage(),
+    ),
+    GetPage(
+      name: _Paths.selectBankPage,
+      page: () => const SelectBankPage(),
+    ),
+    GetPage(
+      name: _Paths.paymentSuccsesGif,
+      page: () => const PaymentSuccsesGif(),
+    ),
+    GetPage(
+      name: _Paths.loginPage,
+      page: () => const LoginPage(),
     ),
   ];
 }

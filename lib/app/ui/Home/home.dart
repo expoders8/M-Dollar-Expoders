@@ -157,9 +157,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        leading: Image.asset(
-          'assets/icons/t1.png',
-          scale: 2.4,
+        leading: GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.profilePage);
+          },
+          child: Image.asset(
+            'assets/icons/t1.png',
+            scale: 2.4,
+          ),
         ),
       ),
       body: Container(

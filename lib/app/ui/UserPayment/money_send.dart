@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
 import '../../../app/ui/UserPayment/chat_screen.dart';
+import '../../routes/app_pages.dart';
+import '../PaymentSuccess/success_payment.dart';
 
 enum SampleItem { getHelp, sendFeedback }
 
@@ -215,7 +217,11 @@ class _MoneySendPageState extends State<MoneySendPage> {
               const SizedBox(height: 90),
               GestureDetector(
                 onTap: () {
-                  Get.to(() => const UserChatPage());
+                  widget.userName == "By Card"
+                      ? Get.to(() => const SuccessPaymentPage())
+                      : widget.userName == "By Internet"
+                          ? Get.toNamed(Routes.selectBankPage)
+                          : Get.to(() => const UserChatPage());
                 },
                 child: Container(
                   width: Get.width - 190,
@@ -226,8 +232,12 @@ class _MoneySendPageState extends State<MoneySendPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Pay",
+                      Text(
+                        widget.userName == "By Card"
+                            ? "Add"
+                            : widget.userName == "By Internet"
+                                ? "Add"
+                                : "Pay",
                         style: TextStyle(
                             color: kWhiteColor,
                             fontSize: 15,

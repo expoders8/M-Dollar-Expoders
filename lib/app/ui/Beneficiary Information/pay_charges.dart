@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/purpose_list_model.dart';
+import '../PaymentSuccess/success_payment.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
-import '../../models/purpose_list_model.dart';
-import '../../routes/app_pages.dart';
-import '../PaymentSuccess/success_payment.dart';
 
 class PayChargesPage extends StatefulWidget {
   const PayChargesPage({super.key});

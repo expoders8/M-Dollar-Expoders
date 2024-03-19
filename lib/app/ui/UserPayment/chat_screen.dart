@@ -1,6 +1,9 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:mdollerapp/app/routes/app_pages.dart';
 
+import '../../../config/provider/payment_succses.dart';
 import '../PaymentSuccess/success_payment.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
@@ -465,7 +468,12 @@ class _UserChatPageState extends State<UserChatPage> {
                         fit: BoxFit.cover,
                       ),
                       onPressed: () async {
-                        Get.to(() => const SuccessPaymentPage());
+                        Navigator.push(context,
+                            ScaleTransition1(const PaymentSuccsesGif()));
+
+                        // Get.toNamed(Routes.paymentSuccsesGif);
+
+                        // Get.to(() => const SuccessPaymentPage());
                       },
                     ),
                     border: OutlineInputBorder(
@@ -490,4 +498,26 @@ class _UserChatPageState extends State<UserChatPage> {
       ),
     );
   }
+}
+
+class ScaleTransition1 extends PageRouteBuilder {
+  final Widget page;
+
+  ScaleTransition1(this.page)
+      : super(
+          pageBuilder: (context, animation, anotherAnimation) => page,
+          transitionDuration: const Duration(milliseconds: 1000),
+          reverseTransitionDuration: const Duration(milliseconds: 200),
+          transitionsBuilder: (context, animation, anotherAnimation, child) {
+            animation = CurvedAnimation(
+                curve: Curves.fastLinearToSlowEaseIn,
+                parent: animation,
+                reverseCurve: Curves.fastOutSlowIn);
+            return ScaleTransition(
+              alignment: Alignment.bottomCenter,
+              scale: animation,
+              child: child,
+            );
+          },
+        );
 }
