@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
 import '../../models/international_transfer_list_model.dart';
-import '../../models/transection_list_model.dart';
 import '../PaymentSuccess/success_payment.dart';
 
 class SelectBankPage extends StatefulWidget {

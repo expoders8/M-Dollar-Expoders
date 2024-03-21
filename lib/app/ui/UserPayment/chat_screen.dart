@@ -1,10 +1,7 @@
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:mdollerapp/app/routes/app_pages.dart';
 
 import '../../../config/provider/payment_succses.dart';
-import '../PaymentSuccess/success_payment.dart';
 import '../../../config/constant/font_constant.dart';
 import '../../../config/constant/color_constant.dart';
 

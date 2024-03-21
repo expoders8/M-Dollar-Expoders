@@ -238,7 +238,7 @@ class _MoneySendPageState extends State<MoneySendPage> {
                             : widget.userName == "By Internet"
                                 ? "Add"
                                 : "Pay",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: kWhiteColor,
                             fontSize: 15,
                             fontFamily: kCircularStdMedium),
