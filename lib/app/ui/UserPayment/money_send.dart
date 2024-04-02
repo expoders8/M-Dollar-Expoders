@@ -14,12 +14,14 @@ class MoneySendPage extends StatefulWidget {
   final String? userImage;
   final String? userNumber;
   final String? money;
+  final String? status;
   const MoneySendPage(
       {super.key,
       this.userName = "Aimla",
       this.userImage = "assets/icons/paymentStore.png",
       this.userNumber = "546-645-4557-53",
-      this.money = ""});
+      this.money = "",
+      this.status = ""});
   @override
   State<MoneySendPage> createState() => _MoneySendPageState();
 }
@@ -237,7 +239,9 @@ class _MoneySendPageState extends State<MoneySendPage> {
                             ? "Add"
                             : widget.userName == "By Internet"
                                 ? "Add"
-                                : "Pay",
+                                : widget.status == ""
+                                    ? "Pay"
+                                    : "Request",
                         style: const TextStyle(
                             color: kWhiteColor,
                             fontSize: 15,

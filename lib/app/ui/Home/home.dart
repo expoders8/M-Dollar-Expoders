@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,7 @@ import '../../models/transection_list_model.dart';
 import '../../models/user_list_model.dart';
 import '../../routes/app_pages.dart';
 import '../MoneySend & Transfer/money_send_transfer.dart';
+import '../UserPayment/user_payment.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,6 +52,46 @@ class _HomePageState extends State<HomePage> {
       name: "Shivani",
     ),
     User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
+      image: "assets/icons/t13.png",
+      name: "Shivani",
+    ),
+    User(
       image: "assets/icons/t10.png",
       name: "Vincent",
     ),
@@ -57,10 +99,10 @@ class _HomePageState extends State<HomePage> {
       image: "assets/icons/t11.png",
       name: "Sophia",
     ),
-    User(
-      image: "assets/icons/arrow-down.png",
-      name: "More",
-    )
+    // User(
+    //   image: "assets/icons/arrow-down.png",
+    //   name: "More",
+    // )
   ];
   List<Business> business = [
     Business(
@@ -132,6 +174,8 @@ class _HomePageState extends State<HomePage> {
       number: "175857494747",
     ),
   ];
+  int itemCountToShow = 9;
+  bool isViewLess = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -254,59 +298,113 @@ class _HomePageState extends State<HomePage> {
                 buildTitleWidget("Pay Again"),
                 const SizedBox(height: 10),
                 SizedBox(
-                  height: 180,
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: size.width > 500 ? 6 : 5,
-                      mainAxisExtent: size.width > 500
-                          ? 80
-                          : Platform.isIOS
+                  height: isViewLess ? 180 : 360,
+                  child: Stack(
+                    children: [
+                      GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: size.width > 500 ? 6 : 5,
+                          mainAxisExtent: size.width > 500
                               ? 80
-                              : 90,
-                    ),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: users.length,
-                    itemBuilder: (context, index) {
-                      var data = users[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 45,
-                              width: 45,
-                              padding: EdgeInsets.all(data.name == "New"
-                                  ? 13
-                                  : data.name == "More"
-                                      ? 10
-                                      : 0),
-                              decoration: BoxDecoration(
-                                  color: data.name == "More"
-                                      ? kCardColor
-                                      : kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: Image.asset(
-                                data.image,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Container(
-                              width: 100,
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                data.name.toString(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: size.width > 500 ? 20 : 13),
-                              ),
-                            ),
-                          ],
+                              : Platform.isIOS
+                                  ? 80
+                                  : 90,
                         ),
-                      );
-                    },
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: isViewLess ? itemCountToShow : users.length,
+                        itemBuilder: (context, index) {
+                          var data = users[index];
+                          return GestureDetector(
+                            onTap: () {
+                              if (data.name != "New") {
+                                Get.to(
+                                  () => UserPaymentPage(
+                                    userName: data.name,
+                                    userImage: data.image,
+                                    userNumber: "",
+                                  ),
+                                );
+                              }
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 45,
+                                  width: 45,
+                                  padding: EdgeInsets.all(
+                                      data.name == "New" ? 13 : 0),
+                                  decoration: BoxDecoration(
+                                      color: kPrimaryColor,
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Image.asset(
+                                    data.image,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 100,
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    data.name.toString(),
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: size.width > 500 ? 20 : 13),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                      Positioned(
+                          bottom: 15,
+                          right: -15,
+                          child: GestureDetector(
+                            onTap: () {
+                              if (isViewLess) {
+                                setState(() {
+                                  isViewLess = false;
+                                });
+                              } else {
+                                setState(() {
+                                  isViewLess = true;
+                                });
+                              }
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 45,
+                                  width: 45,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: kCardColor,
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Image.asset(
+                                    "assets/icons/arrow-down.png",
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 100,
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    isViewLess ? "More" : "Less",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        color: kPrimaryColor,
+                                        fontSize: size.width > 500 ? 20 : 13),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ))
+                    ],
                   ),
                 ),
                 buildTitleWidget("Business"),
@@ -323,32 +421,44 @@ class _HomePageState extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         var data = business[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 44,
-                                width: 44,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Image.asset(
-                                  data.image,
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => UserPaymentPage(
+                                userName: data.name,
+                                userImage: data.image,
+                                userNumber: "",
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 44,
+                                  width: 44,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Image.asset(
+                                    data.image,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                data.name,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: size.width > 500 ? 20 : 13),
-                              ),
-                            ],
+                                const SizedBox(height: 10),
+                                Text(
+                                  data.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: size.width > 500 ? 20 : 13),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
@@ -368,56 +478,72 @@ class _HomePageState extends State<HomePage> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       var transactionData = transaction[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 42,
-                                  width: 42,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Image.asset(
-                                    transactionData.image,
+                      return CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          Get.to(
+                            () => UserPaymentPage(
+                              userName: transactionData.name,
+                              userImage: transactionData.image,
+                              userNumber: transactionData.number,
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6.0, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 42,
+                                    width: 42,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: Image.asset(
+                                      transactionData.image,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 13),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      transactionData.name,
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: size.width > 500 ? 20 : 16,
-                                          fontFamily: kCircularStdBold),
-                                    ),
-                                    Text(
-                                      transactionData.dateTime,
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: size.width > 500 ? 20 : 13,
-                                          fontFamily: kCircularStdNormal),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Text(
-                              transactionData.money,
-                              style: TextStyle(
-                                  color: transactionData.money == "+\$409"
-                                      ? kGreenColor
-                                      : transactionData.money == "+\$202"
-                                          ? kGreenColor
-                                          : kPrimaryColor,
-                                  fontSize: size.width > 500 ? 20 : 15),
-                            ),
-                          ],
+                                  const SizedBox(width: 13),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        transactionData.name,
+                                        style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize:
+                                                size.width > 500 ? 20 : 16,
+                                            fontFamily: kCircularStdBold),
+                                      ),
+                                      Text(
+                                        transactionData.dateTime,
+                                        style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize:
+                                                size.width > 500 ? 20 : 13,
+                                            fontFamily: kCircularStdNormal),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                transactionData.money,
+                                style: TextStyle(
+                                    color: transactionData.money == "+\$409"
+                                        ? kGreenColor
+                                        : transactionData.money == "+\$202"
+                                            ? kGreenColor
+                                            : kPrimaryColor,
+                                    fontSize: size.width > 500 ? 20 : 15),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -742,18 +868,24 @@ class _HomePageState extends State<HomePage> {
                 fontFamily: kCircularStdBold),
           ),
           title == "Transaction"
-              ? Container(
-                  decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(20)),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                  child: const Text(
-                    "View All",
-                    style: TextStyle(
-                        color: kWhiteColor,
-                        fontSize: 12,
-                        fontFamily: kCircularStdNormal),
+              ? CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    Get.toNamed(Routes.transactionListViewPage);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(20)),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    child: const Text(
+                      "View All",
+                      style: TextStyle(
+                          color: kWhiteColor,
+                          fontSize: 12,
+                          fontFamily: kCircularStdNormal),
+                    ),
                   ),
                 )
               : Container()
@@ -774,6 +906,9 @@ class _HomePageState extends State<HomePage> {
 
         if (selectedTitle == "Pay by Scan") {
           Get.toNamed(Routes.qRCodeScannerPage);
+        }
+        if (selectedTitle == "Bill Pay") {
+          Get.toNamed(Routes.billPayPage);
         }
       },
       child: Column(

@@ -5,6 +5,7 @@ abstract class Routes {
 
   static const homePage = _Paths.homePage;
   static const loginPage = _Paths.loginPage;
+  static const billPayPage = _Paths.billPayPage;
   static const profilePage = _Paths.profilePage;
   static const countryWidget = _Paths.countryWidget;
   static const payChargesPage = _Paths.payChargesPage;
@@ -15,6 +16,7 @@ abstract class Routes {
   static const qRCodeScannerPage = _Paths.qRCodeScannerPage;
   static const transectionDetailsPage = _Paths.transectionDetailsPage;
   static const purposeTransectionPage = _Paths.purposeTransectionPage;
+  static const transactionListViewPage = _Paths.transactionListViewPage;
   static const accountAddedCompletPage = _Paths.accountAddedCompletPage;
   static const moneySendAndTransferPage = _Paths.moneySendAndTransferPage;
   static const internationalTransferPage = _Paths.internationalTransferPage;
@@ -26,6 +28,7 @@ abstract class Routes {
 abstract class _Paths {
   static const homePage = '/homePage';
   static const loginPage = '/loginPage';
+  static const billPayPage = '/billPayPage';
   static const profilePage = '/profilePage';
   static const countryWidget = '/countryWidget';
   static const payChargesPage = '/payChargesPage';
@@ -36,6 +39,7 @@ abstract class _Paths {
   static const qRCodeScannerPage = '/qRCodeScannerPage';
   static const purposeTransectionPage = '/purposeTransectionPage';
   static const transectionDetailsPage = '/transectionDetailsPage';
+  static const transactionListViewPage = '/transactionListViewPage';
   static const accountAddedCompletPage = '/accountAddedCompletPage';
   static const moneySendAndTransferPage = '/moneySendAndTransferPage';
   static const internationalTransferPage = '/internationalTransferPage';

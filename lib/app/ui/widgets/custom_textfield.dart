@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../config/constant/color_constant.dart';
 import '../../../config/constant/font_constant.dart';
+import '../UserPayment/user_payment.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? ctrl;
@@ -176,7 +177,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   )
                 : widget.name == "pin"
                     ? GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(
+                            () => const UserPaymentPage(),
+                          );
+                        },
                         child: Container(
                           width: 50,
                           decoration: const BoxDecoration(

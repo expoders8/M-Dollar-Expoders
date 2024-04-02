@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import '../../config/provider/payment_succses.dart';
 import '../ui/Auth/sign_in.dart';
+import '../ui/Bill Pay/bill_pay.dart';
 import '../ui/Home/home.dart';
 import '../ui/Profile/profile.dart';
 import '../ui/AddPayment/add_payment.dart';
@@ -16,6 +17,7 @@ import '../ui/InternationalTransfer/international_transfer.dart';
 import '../ui/Beneficiary Information/account_added_complet.dart';
 import '../ui/Beneficiary Information/beneficiary_information.dart';
 import '../ui/Beneficiary Information/additional_transection_details.dart';
+import '../view/transaction_list_view.dart';
 
 part 'app_routes.dart';
 
@@ -92,6 +94,14 @@ class AppPages {
     GetPage(
       name: _Paths.loginPage,
       page: () => const LoginPage(),
+    ),
+    GetPage(
+      name: _Paths.billPayPage,
+      page: () => const BillPayPage(),
+    ),
+    GetPage(
+      name: _Paths.transactionListViewPage,
+      page: () => const TransactionListViewPage(),
     ),
   ];
 }

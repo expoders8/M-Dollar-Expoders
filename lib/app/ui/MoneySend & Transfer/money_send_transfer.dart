@@ -228,7 +228,7 @@ class _MoneySendAndTransferPageState extends State<MoneySendAndTransferPage> {
                               borderRadius: BorderRadius.circular(9.0),
                               borderSide: BorderSide.none,
                             ),
-                            hintText: '  +1 546-645-4657-53',
+                            hintText: '+1 546-645-4657-53',
                             hintStyle: const TextStyle(
                               fontWeight: FontWeight.w400,
                               color: kGreyColor,
@@ -237,21 +237,30 @@ class _MoneySendAndTransferPageState extends State<MoneySendAndTransferPage> {
                             hintMaxLines: 1,
                             contentPadding:
                                 const EdgeInsets.fromLTRB(20, 15, 15, 15),
-                            prefixIcon: Container(
+                            prefixIcon: SizedBox(
                               height: 55,
-                              decoration: const BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                ),
-                              ),
-                              child: Image.asset(
-                                "assets/icons/transferMoney.png",
-                                color: kWhiteColor,
-                                height: 20,
-                                width: 20,
-                                scale: 1.6,
+                              width: 54,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 55,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                      color: kPrimaryColor,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: Image.asset(
+                                      "assets/icons/transferMoney.png",
+                                      color: kWhiteColor,
+                                      height: 20,
+                                      width: 20,
+                                      scale: 1.6,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -294,9 +303,30 @@ class _MoneySendAndTransferPageState extends State<MoneySendAndTransferPage> {
                             ),
                           );
                         },
-                        noItemsFoundBuilder: (context) => const SizedBox(
-                          child: Center(
-                            child: Text('No City found'),
+                        noItemsFoundBuilder: (context) => GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => UserPaymentPage(
+                                userName: "Amila",
+                                userImage: "assets/icons/t4.png",
+                                userNumber: mobileNoController.text,
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: Image.asset(
+                              "assets/icons/t4.png",
+                              height: 40,
+                              width: 40,
+                            ),
+                            title: const Text(
+                              "Amila",
+                              style: TextStyle(color: kWhiteColor),
+                            ),
+                            subtitle: Text(
+                              mobileNoController.text,
+                              style: const TextStyle(color: kGreyColor),
+                            ),
                           ),
                         ),
                         transitionBuilder:
@@ -386,7 +416,7 @@ class _MoneySendAndTransferPageState extends State<MoneySendAndTransferPage> {
                                             fontFamily: kCircularStdBold),
                                       ),
                                       Text(
-                                        transactionData.dateTime,
+                                        transactionData.number,
                                         style: TextStyle(
                                             color: kPrimaryColor,
                                             fontSize: Get.width > 500 ? 20 : 13,

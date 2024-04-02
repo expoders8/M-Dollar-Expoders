@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mdollerapp/app/ui/UserPayment/money_send.dart';
@@ -10,7 +11,10 @@ class UserPaymentPage extends StatefulWidget {
   final String? userImage;
   final String? userNumber;
   const UserPaymentPage(
-      {super.key, this.userName, this.userImage, this.userNumber});
+      {super.key,
+      this.userName = "Merto",
+      this.userImage = "assets/icons/t8.png",
+      this.userNumber = "4564 - 65456 - 4566"});
 
   @override
   State<UserPaymentPage> createState() => _UserPaymentPageState();
@@ -171,41 +175,64 @@ class _UserPaymentPageState extends State<UserPaymentPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: Get.width / 2.5,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: const Center(
-                              child: Text(
-                                "Pay  -",
-                                style: TextStyle(
-                                    color: kWhiteColor,
-                                    fontSize: 15,
-                                    fontFamily: kCircularStdMedium),
+                          CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              Get.to(() => MoneySendPage(
+                                    userImage: widget.userImage!,
+                                    userName: widget.userName!,
+                                    userNumber: widget.userNumber!,
+                                    money: msgController.text,
+                                  ));
+                            },
+                            child: Container(
+                              width: Get.width / 2.5,
+                              height: 50,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 10),
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: const Center(
+                                child: Text(
+                                  "Pay  -",
+                                  style: TextStyle(
+                                      color: kWhiteColor,
+                                      fontSize: 15,
+                                      fontFamily: kCircularStdMedium),
+                                ),
                               ),
                             ),
                           ),
                           const SizedBox(width: 10),
-                          Container(
-                            width: Get.width / 2.5,
-                            height: 50,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                border: Border.all(
-                                    color: kPrimaryColor, width: 0.8)),
-                            child: const Center(
-                              child: Text(
-                                "Request  +",
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: 15,
-                                    fontFamily: kCircularStdMedium),
+                          CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              Get.to(() => MoneySendPage(
+                                    userImage: widget.userImage!,
+                                    userName: widget.userName!,
+                                    userNumber: widget.userNumber!,
+                                    money: msgController.text,
+                                    status: "request",
+                                  ));
+                            },
+                            child: Container(
+                              width: Get.width / 2.5,
+                              height: 50,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(
+                                      color: kPrimaryColor, width: 0.8)),
+                              child: const Center(
+                                child: Text(
+                                  "Request  +",
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 15,
+                                      fontFamily: kCircularStdMedium),
+                                ),
                               ),
                             ),
                           ),
