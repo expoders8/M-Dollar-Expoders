@@ -85,6 +85,8 @@ class _ProfilePageState extends State<ProfilePage> {
               tileMode: TileMode.repeated),
         ),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
             child: Column(

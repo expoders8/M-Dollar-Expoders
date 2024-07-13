@@ -13,6 +13,7 @@ abstract class Routes {
   static const addPaymentPage = _Paths.addPaymentPage;
   static const transferCodePage = _Paths.transferCodePage;
   static const paymentSuccsesGif = _Paths.paymentSuccsesGif;
+  static const countryCodeWidget = _Paths.countryCodeWidget;
   static const qRCodeScannerPage = _Paths.qRCodeScannerPage;
   static const transectionDetailsPage = _Paths.transectionDetailsPage;
   static const purposeTransectionPage = _Paths.purposeTransectionPage;
@@ -37,6 +38,7 @@ abstract class _Paths {
   static const transferCodePage = '/transferCodePage';
   static const paymentSuccsesGif = '/paymentSuccsesGif';
   static const qRCodeScannerPage = '/qRCodeScannerPage';
+  static const countryCodeWidget = '/countryCodeWidget';
   static const purposeTransectionPage = '/purposeTransectionPage';
   static const transectionDetailsPage = '/transectionDetailsPage';
   static const transactionListViewPage = '/transactionListViewPage';

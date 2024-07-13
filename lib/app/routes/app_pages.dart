@@ -6,6 +6,7 @@ import '../ui/Home/home.dart';
 import '../ui/Profile/profile.dart';
 import '../ui/AddPayment/add_payment.dart';
 import '../ui/SelectBank/select_back.dart';
+import '../ui/widgets/country_code_widget.dart';
 import '../ui/widgets/country_widget.dart';
 import '../ui/QRCodeScanner/qr_code_scanner.dart';
 import '../ui/Beneficiary Information/pay_charges.dart';
@@ -102,6 +103,10 @@ class AppPages {
     GetPage(
       name: _Paths.transactionListViewPage,
       page: () => const TransactionListViewPage(),
+    ),
+    GetPage(
+      name: _Paths.countryCodeWidget,
+      page: () => const CountryCodeWidget(),
     ),
   ];
 }

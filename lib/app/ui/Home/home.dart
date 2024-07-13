@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
 import '../../../config/constant/color_constant.dart';
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
       name: "Ch Vincent",
       dateTime: "11 Oct 2024",
       money: "-\$60",
-      number: "175857494747",
+      number: "19865656565",
     ),
     Transaction(
       image: "assets/icons/t7.png",
@@ -222,6 +223,8 @@ class _HomePageState extends State<HomePage> {
               tileMode: TileMode.repeated),
         ),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: Column(
@@ -379,12 +382,14 @@ class _HomePageState extends State<HomePage> {
                                 Container(
                                   height: 45,
                                   width: 45,
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       color: kCardColor,
-                                      borderRadius: BorderRadius.circular(25)),
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(color: kWhiteColor)),
                                   child: Image.asset(
                                     "assets/icons/arrow-down.png",
+                                    scale: 1.5,
                                   ),
                                 ),
                                 const SizedBox(height: 10),
@@ -413,55 +418,81 @@ class _HomePageState extends State<HomePage> {
                   height: 120,
                   width: size.width,
                   child: Card(
-                    color: kCardColor,
-                    elevation: 3,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(left: 5),
-                      itemCount: business.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        var data = business[index];
-                        return GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              () => UserPaymentPage(
-                                userName: data.name,
-                                userImage: data.image,
-                                userNumber: "",
+                    elevation: 5,
+                    shadowColor: const Color.fromARGB(50, 0, 0, 0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: kCardColor),
+                      child: AnimationLimiter(
+                        child: ListView.builder(
+                          padding: const EdgeInsets.only(left: 5),
+                          itemCount: business.length,
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            var data = business[index];
+                            return AnimationConfiguration.staggeredGrid(
+                              position: index,
+                              duration: const Duration(milliseconds: 500),
+                              columnCount: business.length,
+                              child: ScaleAnimation(
+                                duration: const Duration(milliseconds: 900),
+                                curve: Curves.fastLinearToSlowEaseIn,
+                                scale: 1.5,
+                                child: FadeInAnimation(
+                                  child: CupertinoButton(
+                                    padding: EdgeInsets.zero,
+                                    onPressed: () {
+                                      Get.to(
+                                        () => UserPaymentPage(
+                                          userName: data.name,
+                                          userImage: data.image,
+                                          userNumber: "",
+                                        ),
+                                      );
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            height: 44,
+                                            width: 44,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25)),
+                                            child: Image.asset(
+                                              data.image,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Text(
+                                            data.name,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                                color: kPrimaryColor,
+                                                fontSize:
+                                                    size.width > 500 ? 20 : 13),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             );
                           },
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 44,
-                                  width: 44,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Image.asset(
-                                    data.image,
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  data.name,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: size.width > 500 ? 20 : 13),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -595,39 +626,6 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // GestureDetector(
-                          //   onTap: () {
-                          //     Get.back();
-                          //     Get.to(() => const MoneySendAndTransferPage(
-                          //         tag: "M-Pesa Account"));
-                          //   },
-                          //   child: Column(
-                          //     children: [
-                          //       Container(
-                          //         decoration: BoxDecoration(
-                          //           borderRadius: BorderRadius.circular(12),
-                          //           color: const Color(0xFFE5E6E0),
-                          //         ),
-                          //         height: 50,
-                          //         width: 50,
-                          //         child: Image.asset(
-                          //           "assets/icons/transferMoney.png",
-                          //           scale: 1.5,
-                          //         ),
-                          //       ),
-                          //       const SizedBox(height: 10),
-                          //       const Text(
-                          //         "M-Pesa\nAccount",
-                          //         textAlign: TextAlign.center,
-                          //         style: TextStyle(
-                          //             color: kPrimaryColor,
-                          //             fontSize: 14,
-                          //             fontFamily: kCircularStdNormal),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          const SizedBox(width: 3),
                           GestureDetector(
                             onTap: () {
                               Get.back();
@@ -693,7 +691,7 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 34),
+                          const SizedBox(width: 30),
                           GestureDetector(
                             onTap: () {
                               Get.back();
@@ -780,7 +778,8 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               Get.back();
-                              // Get.toNamed(Routes.internationalTransferPage);
+                              Get.toNamed(
+                                  Routes.transectionDetailsPage); //tirth
                             },
                             child: Column(
                               children: [

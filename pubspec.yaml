@@ -43,6 +43,8 @@ dependencies:
   flutter_datetime_picker_bdaya: ^3.0.2
   intl: ^0.18.1
   lottie: ^2.7.0
+  flutter_staggered_animations: ^1.1.1
+  share_plus: ^7.2.2
 
 dev_dependencies:
   flutter_test:

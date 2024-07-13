@@ -15,7 +15,7 @@ const kDividerColor = Color(0xFFC9C9C9);
 const kBackGroundColor = Color(0XFFF4F6F7);
 const kPrimaryColor = Color(0XFF000000);
 const kTextSecondaryColor = Color(0xFF74746F);
-const kCardColor = Color(0xFFF4F1EC);
+const kCardColor = Color(0xFFF4EFEA);
 const kDottedBorderColor = Color(0Xff707070);
 
 const kTransparentColor = Color(0x00000000);

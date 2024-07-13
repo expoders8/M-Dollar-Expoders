@@ -94,92 +94,87 @@ class _CountryWidgetState extends State<CountryWidget> {
               end: Alignment.bottomCenter,
               tileMode: TileMode.repeated),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Select the",
-                    style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 27,
-                        fontFamily: kCircularStdBook),
-                  ),
-                  const Text(
-                    "Country",
-                    style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: 27,
-                        fontFamily: kCircularStdBold),
-                  ),
-                  const SizedBox(height: 15),
-                  TextFormField(
-                    controller: searchController,
-                    decoration: const InputDecoration(
-                      labelText: 'Search',
-                      labelStyle: TextStyle(color: kPrimaryColor),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFADAEAC),
-                          width: 1,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFADAEAC),
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  SizedBox(
-                    height: Get.height,
-                    width: Get.width,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(left: 5, top: 5),
-                      itemCount: internationalTransfer.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        var transactionData = internationalTransfer[index];
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.baneficiaryInformationPage);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 60,
-                                width: 60,
-                                child: Image.asset(
-                                  transactionData.image,
-                                  height: 60,
-                                  width: 60,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                transactionData.name,
-                                style: TextStyle(
-                                    color: kPrimaryColor,
-                                    fontSize: Get.width > 500 ? 20 : 17,
-                                    fontFamily: kCircularStdBold),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Select the",
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 27,
+                    fontFamily: kCircularStdBook),
               ),
-            ),
+              const Text(
+                "Country",
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: 27,
+                    fontFamily: kCircularStdBold),
+              ),
+              const SizedBox(height: 15),
+              TextFormField(
+                controller: searchController,
+                decoration: const InputDecoration(
+                  labelText: 'Search',
+                  labelStyle: TextStyle(color: kPrimaryColor),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFADAEAC),
+                      width: 1,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFADAEAC),
+                      width: 1,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(left: 5, top: 5),
+                  itemCount: internationalTransfer.length,
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
+                  itemBuilder: (context, index) {
+                    var transactionData = internationalTransfer[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.baneficiaryInformationPage);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: Image.asset(
+                              transactionData.image,
+                              height: 60,
+                              width: 60,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            transactionData.name,
+                            style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: Get.width > 500 ? 20 : 17,
+                                fontFamily: kCircularStdBold),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 1),
+            ],
           ),
         ),
       ),

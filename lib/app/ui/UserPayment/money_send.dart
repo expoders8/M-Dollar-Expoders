@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -155,41 +156,55 @@ class _MoneySendPageState extends State<MoneySendPage> {
               ),
               const SizedBox(height: 80),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                width: Get.width - 100,
-                child: TextFormField(
-                  style: const TextStyle(
-                    fontSize: 35,
-                    fontFamily: kCircularStdBold,
-                  ),
-                  controller: msgController,
-                  textAlignVertical: TextAlignVertical.center,
-                  keyboardType: TextInputType.number,
-                  cursorColor: kPrimaryColor,
-                  onChanged: (value) {},
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xFFFDF8F6),
-                    hintText: "",
-                    hintStyle: const TextStyle(color: kPrimaryColor),
-                    // contentPadding: const EdgeInsets.fromLTRB(60, 50, 60, 0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(9.0),
-                      borderSide: BorderSide.none,
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  width: Get.width - 100,
+                  child: TextFormField(
+                    style: const TextStyle(
+                      fontSize: 35,
+                      fontFamily: kCircularStdBold,
                     ),
-                    // Remove border from the input field itself
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(9.0),
-                      borderSide: BorderSide.none,
+                    controller: msgController,
+                    textAlignVertical: TextAlignVertical.center,
+                    keyboardType: TextInputType.number,
+                    cursorColor: kPrimaryColor,
+                    onChanged: (value) {},
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFFDF8F6),
+                      hintText: "\$",
+                      hintStyle: const TextStyle(color: kPrimaryColor),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(9.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(9.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(9.0),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(9.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-              ),
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(8),
+                      TextInputFormatter.withFunction((oldValue, newValue) {
+                        if (newValue.text.isEmpty ||
+                            !newValue.text.startsWith('\$')) {
+                          return TextEditingValue(
+                            text: '\$${newValue.text}',
+                            selection: newValue.selection.copyWith(
+                              baseOffset: newValue.selection.baseOffset + 1,
+                              extentOffset: newValue.selection.extentOffset + 1,
+                            ),
+                          );
+                        }
+                        // Otherwise, just return the new value as it is
+                        return newValue;
+                      }),
+                    ],
+                  )),
               const SizedBox(height: 35),
               Container(
                 width: Get.width - 220,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 
 import '../../config/constant/color_constant.dart';
@@ -162,77 +163,101 @@ class _TransactionListViewPageState extends State<TransactionListViewPage> {
               ),
               const SizedBox(height: 10),
               Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.only(left: 5, top: 5),
-                  itemCount: transaction.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    var transactionData = transaction[index];
-                    return CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Get.to(
-                          () => UserPaymentPage(
-                            userName: transactionData.name,
-                            userImage: transactionData.image,
-                            userNumber: transactionData.number,
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 6.0, vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 42,
-                                  width: 42,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Image.asset(
-                                    transactionData.image,
+                child: AnimationLimiter(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(left: 5, top: 5),
+                    itemCount: transaction.length,
+                    scrollDirection: Axis.vertical,
+                    physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
+                    itemBuilder: (context, index) {
+                      var transactionData = transaction[index];
+                      return AnimationConfiguration.staggeredList(
+                        position: index,
+                        delay: const Duration(milliseconds: 100),
+                        child: SlideAnimation(
+                          duration: const Duration(milliseconds: 2500),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          child: FadeInAnimation(
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            duration: const Duration(milliseconds: 2500),
+                            child: CupertinoButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: () {
+                                Get.to(
+                                  () => UserPaymentPage(
+                                    userName: transactionData.name,
+                                    userImage: transactionData.image,
+                                    userNumber: transactionData.number,
                                   ),
-                                ),
-                                const SizedBox(width: 13),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6.0, vertical: 8),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      transactionData.name,
-                                      style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: Get.width > 500 ? 20 : 16,
-                                          fontFamily: kCircularStdBold),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 42,
+                                          width: 42,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(25)),
+                                          child: Image.asset(
+                                            transactionData.image,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 13),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              transactionData.name,
+                                              style: TextStyle(
+                                                  color: kPrimaryColor,
+                                                  fontSize:
+                                                      Get.width > 500 ? 20 : 16,
+                                                  fontFamily: kCircularStdBold),
+                                            ),
+                                            Text(
+                                              transactionData.dateTime,
+                                              style: TextStyle(
+                                                  color: kPrimaryColor,
+                                                  fontSize:
+                                                      Get.width > 500 ? 20 : 13,
+                                                  fontFamily:
+                                                      kCircularStdNormal),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                     Text(
-                                      transactionData.dateTime,
+                                      transactionData.money,
                                       style: TextStyle(
-                                          color: kPrimaryColor,
-                                          fontSize: Get.width > 500 ? 20 : 13,
-                                          fontFamily: kCircularStdNormal),
+                                          color:
+                                              transactionData.money == "+\$409"
+                                                  ? kGreenColor
+                                                  : transactionData.money ==
+                                                          "+\$202"
+                                                      ? kGreenColor
+                                                      : kPrimaryColor,
+                                          fontSize: Get.width > 500 ? 20 : 15),
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                            Text(
-                              transactionData.money,
-                              style: TextStyle(
-                                  color: transactionData.money == "+\$409"
-                                      ? kGreenColor
-                                      : transactionData.money == "+\$202"
-                                          ? kGreenColor
-                                          : kPrimaryColor,
-                                  fontSize: Get.width > 500 ? 20 : 15),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
